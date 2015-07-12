@@ -32,14 +32,12 @@
       <div class="col-md-4 col-md-offset-1">
         <div class="panel panel-default">
           <div class="panel-body">
-            <form id="form"  role="form" method="post">
-              
+            <form id="form"  role="form" method="post">   
               <div class="form-group">
                 <input type="text" class="form-control" name="image1" placeholder="Source of first Image" {{('value="%s"' %oldform['image1'])|safe if retry}} required>
               </div>   
             </form>
           </div>
-         
         </div> 
         <div class="row">
         <div class="col-sm-6 col-md-4">
@@ -48,22 +46,15 @@
          </div>
          </div>
          </div>
-        
-
-      
-
-       
       <div class="col-md-4 col-md-offset-1">
         <div class="panel panel-default">
           <div class="panel-body">
             <form id="form"  role="form" method="post">
-              
               <div class="form-group">
-                <input type="text" class="form-control" name="image2" placeholder="Source of second Image" {{('value="%s"' %oldform['image2'])|safe if retry}} required>
+                <input type="text" class="form-control" name="image2" placeholder="Source of second Image" {{('value="%s"' %oldform['image2'])|safe if retry}} require >
               </div>   
             </form>
           </div> 
-         
         </div> 
         <div class="row">
         <div class="col-sm-6 col-md-4">
@@ -74,6 +65,11 @@
       </div>
       <div class="col-md-2 col-md-offset-5">
       <button type="button" class="btn btn-primary">COMPARE</button>
+      </div>
+      <div class="container">
+        <div class="panel panel-success">
+          {{percent}}
+        </div>
       </div>
     
 

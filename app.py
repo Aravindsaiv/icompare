@@ -1,11 +1,14 @@
 from flask import Flask, request, render_template, redirect, flash
+import cv2
+import numpy as np
+
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	if request.method == 'GET':
-		return render_template('index.html',page="home")
+		return render_template('index.html',page="home", percent = None)
 	elif request.method == 'POST':
 		if 'image1' in request.form:
 			image1 = request.form['image1']
@@ -15,8 +18,23 @@ def index():
 			app.logger.info(repr(image2));
 
 		#image urls stored in image1 & image2	
-			
-		return render_template('index.html',page="home")
+		
+		##code for comparing
+		img_rgb = cv2.imread(image1)
+		img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
+		template = cv2.imread(image2,0)
+		w, h = template.shape[::-1]
+
+		res = cv2.matchTemplate(img_gray,template,cv2.TM_CCOEFF_NORMED)
+		min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+		threshold = 0.8
+		loc = np.where( res >= threshold)
+		for pt in zip(*loc[::-1]):
+			cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
+		# print loc
+		percent = max_val*100
+
+		return render_template('index.html',page="home",percent = percent)
 
 if __name__ == '__main__':
     app.run(debug=True)

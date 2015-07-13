@@ -20,19 +20,22 @@ def index():
 		#image urls stored in image1 & image2	
 		
 		##code for comparing
-		img_rgb = cv2.imread(image1)
-		img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-		template = cv2.imread(image2,0)
-		w, h = template.shape[::-1]
+		if image1 and image2:
+			img_rgb = cv2.imread(image1)
+			img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
+			template = cv2.imread(image2,0)
+			w, h = template.shape[::-1]
 
-		res = cv2.matchTemplate(img_gray,template,cv2.TM_CCOEFF_NORMED)
-		min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
-		threshold = 0.8
-		loc = np.where( res >= threshold)
-		for pt in zip(*loc[::-1]):
-			cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
-		# print loc
-		percent = max_val*100
+			res = cv2.matchTemplate(img_gray,template,cv2.TM_CCOEFF_NORMED)
+			min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+			threshold = 0.8
+			loc = np.where( res >= threshold)
+			for pt in zip(*loc[::-1]):
+				cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
+			# print loc
+			percent = max_val*100
+		else: 
+			app.logger.info("image not found")
 
 		return render_template('index.html',page="home",percent = percent)
 

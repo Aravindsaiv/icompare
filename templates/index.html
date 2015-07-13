@@ -5,80 +5,68 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>IM-COM</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='css/paper.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
-
-
-  <!-- favicon -->
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/favicon.png') }}"/>
+
   </head>
-<style type="text/css">
-  .navbar-nav > li{
-  font-size: 14px;
-}
-</style>
-  <body style="padding-top: 70px;">
+  <body>
 
     <!-- Fixed navbar -->
     {% include 'navbar.html' %}
-
-      <div class="container">    
-      <div class="col-md-4 col-md-offset-1">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <form id="form"  role="form" method="post">   
+    <div class="container">  
+      <form id="form"  role="form" method="post">   
+        <div class="col-md-4 col-md-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <!-- <form id="form"  role="form" method="post">    -->
               <div class="form-group">
                 <input type="text" class="form-control" name="image1" placeholder="Source of first Image" {{('value="%s"' %oldform['image1'])|safe if retry}} required>
               </div>   
-            </form>
+            <!-- </form> -->
+            </div>
+          </div> 
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <img src="http://static.sportskeeda.com/wp-content/uploads/2015/02/sachin-tendulkar-1423950571.jpg" 
+              height="300" width="350">
+            </div>
           </div>
-        </div> 
-        <div class="row">
-        <div class="col-sm-6 col-md-4">
-         <img src="http://static.sportskeeda.com/wp-content/uploads/2015/02/sachin-tendulkar-1423950571.jpg" 
-         height="300" width="350">
-         </div>
-         </div>
-         </div>
-      <div class="col-md-4 col-md-offset-1">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <form id="form"  role="form" method="post">
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <!-- <form id="form"  role="form" method="post"> -->
               <div class="form-group">
                 <input type="text" class="form-control" name="image2" placeholder="Source of second Image" {{('value="%s"' %oldform['image2'])|safe if retry}} require >
               </div>   
-            </form>
+            <!-- </form> -->
+            </div> 
           </div> 
-        </div> 
-        <div class="row">
-        <div class="col-sm-6 col-md-4">
-         <img src="http://st1.cricketcountry.com/wp-content/uploads/cricket/image_20131014140824.jpg" height="300" width="350">
-         </div>
-         </div>
-      </div>
-      </div>
-      <div class="col-md-2 col-md-offset-5">
-      <button type="button" class="btn btn-primary">COMPARE</button>
-      </div>
-      <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <img src="http://st1.cricketcountry.com/wp-content/uploads/cricket/image_20131014140824.jpg" height="300" width="350">
+            </div>
+          </div>
+        </div>
+      <!-- </div> -->
+        <div class="col-md-2 col-md-offset-5">
+          <button type="submit" class="btn btn-primary">COMPARE</button>
+        </div>
+      </form>
+    </div><br/><br/>
+    <div class="container">
+      <center><div class="col col-3-md">
         <div class="panel panel-success">
           {{percent}}
         </div>
-      </div>
+      </div></center>
+    </div>
     
-
-
-
-        
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{ url_for('static', filename='js/jquery.js')}}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
   </body>

@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	if request.method == 'GET':
-		return render_template('index.html',page="home", percent = None)
+		return render_template('index.html',page="home", percent = None, url1 = "//:0", url2 = "//:0")
 	elif request.method == 'POST':
 		if 'image1' in request.form:
 			image1 = request.form['image1']
@@ -16,6 +16,7 @@ def index():
 		if 'image2' in request.form:
 			image2 = request.form['image2']
 			app.logger.info(repr(image2));
+		return render_template('index.html',page="home",url1 = image1, url2 = image2)
 
 		#image urls stored in image1 & image2	
 		

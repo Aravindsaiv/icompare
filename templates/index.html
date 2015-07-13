@@ -32,7 +32,7 @@
           </div> 
           <div class="row">
             <div class="col-sm-6 col-md-4">
-              <img src="http://static.sportskeeda.com/wp-content/uploads/2015/02/sachin-tendulkar-1423950571.jpg" 
+              <img src={{url1}} 
               height="300" width="350">
             </div>
           </div>
@@ -42,14 +42,15 @@
             <div class="panel-body">
               <!-- <form id="form"  role="form" method="post"> -->
               <div class="form-group">
-                <input type="text" class="form-control" name="image2" placeholder="Source of second Image" {{('value="%s"' %oldform['image2'])|safe if retry}} require >
+                <input type="text" class="form-control" name="image2" placeholder="Source of second Image" {{('value="%s"' %oldform['image2'])|safe if retry}} required>
               </div>   
             <!-- </form> -->
             </div> 
           </div> 
           <div class="row">
             <div class="col-sm-6 col-md-4">
-              <img src="http://st1.cricketcountry.com/wp-content/uploads/cricket/image_20131014140824.jpg" height="300" width="350">
+              <img src={{url2}}
+               height="300" width="350">
             </div>
           </div>
         </div>

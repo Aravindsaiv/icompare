@@ -6,69 +6,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>IM-COM</title>
+    <title>icompare</title>
 
     <link href="{{ url_for('static', filename='css/paper.css')}}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/ripples.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/material-fullpalette.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/roboto.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/favicon.png') }}"/>
 
   </head>
-  <body>
+  <body class="body-material-light-grey">
 
     <!-- Fixed navbar -->
     {% include 'navbar.html' %}
+    <div class="jumbotron">
     <div class="container">  
       <form id="form"  role="form" method="post">   
-        <div class="col-md-4 col-md-offset-1">
+        <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-body">
-              <!-- <form id="form"  role="form" method="post">    -->
               <div class="form-group">
-                <input type="text" class="form-control" name="image1" placeholder="Source of first Image" {{('value="%s"' %oldform['image1'])|safe if retry}} required>
+               <div class="input-group">
+                  <input type="text" class="form-control" id="mycanvas1" name="image1" placeholder="Link of first Image" {{('value="%s"' %oldform['image1'])|safe if retry}} required>
+                  <span class="input-group-btn">
+                    <button type="button" class="glyphicon glyphicon-download" id="url_btn1"></button>
+                  </span>
+                </div>
               </div>   
-            <!-- </form> -->
             </div>
           </div> 
           <div class="row">
-            <div class="col-sm-6 col-md-4">
-              <img src={{url1}} 
-              height="300" width="350">
+            <div class="col-sm-6 col-md-4" id="append1">
+              <img src="" id="im_field1" height="300" width="350">
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-md-offset-1">
+        <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-body">
-              <!-- <form id="form"  role="form" method="post"> -->
               <div class="form-group">
-                <input type="text" class="form-control" name="image2" placeholder="Source of second Image" {{('value="%s"' %oldform['image2'])|safe if retry}} required>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="mycanvas2" name="image2" placeholder="Link of second Image" {{('value="%s"' %oldform['image2'])|safe if retry}} required>
+                  <span class="input-group-btn">
+                    <button type="button" class="glyphicon glyphicon-download"></button>
+                  </span>
+                </div>
               </div>   
-            <!-- </form> -->
             </div> 
           </div> 
           <div class="row">
             <div class="col-sm-6 col-md-4">
-              <img src={{url2}}
-               height="300" width="350">
+              <img src="" id="im_field2" height="300" width="350">
             </div>
           </div>
         </div>
-      <!-- </div> -->
-        <div class="col-md-2 col-md-offset-5">
-          <button type="submit" class="btn btn-primary">COMPARE</button>
+        <center>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-primary btn-flat">COMPARE</button><br/><br/>
+            <div class="container">
+              <center>
+                {% if sim == "Excatly Same": %}
+                  <div class="label label-lg label-success">{{sim}}</div><br/><br/>
+                {% elif sim == "Almost Similar": %}
+                  <div class="label label-lg label-material-light-green">{{sim}}</div><br/><br/>
+                {% elif sim == "Not much similarity": %}
+                  <div class="label label-lg label-material-orange">{{sim}}</div><br/><br/>
+                {% else: %}
+                  <div class="label label-lg label-material-red">{{sim}}</div><br/><br/>
+                {% endif %}
+                <div class="panel panel-success">
+                  <div class="panel panel-heading">Percent Of Similarity</div>
+                  <div class="panel panel-body">{{percent}}</div>
+                </div>
+              </center>
+           </div>
         </div>
+        </center> 
       </form>
-    </div><br/><br/>
-    <div class="container">
-      <center><div class="col col-3-md">
-        <div class="panel panel-success">
-          {{percent}}
-        </div>
-      </div></center>
     </div>
+    </div><br/>
+    <footer class="footer-material-grey">
+      <div class="container">
+        <center><strong><p style="color:black;">icompare</p></strong></center>
+      </div>
+    </footer>
+   
+
     
-<script src="{{ url_for('static', filename='js/jquery.js')}}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/material.min.js.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js')}}"></script>    
+    <script src="{{ url_for('static', filename='js/ripples.js')}}"></script>
+    <script src="js/styles.js"></script>
+
+    
   </body>
 </html>

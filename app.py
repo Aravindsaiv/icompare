@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	if request.method == 'GET':
-		return render_template('index.html',page="home", percent = 0, url1 = "//:0", url2 = "//:0")
+		return render_template('index.html',page="home", percent = 0, image1 = "//:0", image2 = "//:0")
 	elif request.method == 'POST':
 		if 'image1' in request.form:
 			image1 = request.form['image1']
@@ -43,21 +43,21 @@ def index():
 			loc = np.where( res >= threshold)
 			for pt in zip(*loc[::-1]):
 				cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
-			percent = max_val*100
+			percent =abs(max_val*100)
 
 			if percent >= 98:
-				sim = "Excatly Same"
+				sim = "Excatly Similar"
 			elif percent >=50:
 				sim = "Almost Similar"
 			elif percent >= 10:
-				sim = "Not much similarity"
+				sim = "Not much similar"
 			else:
 				sim = "Completely Different Images"
 
 		else: 
 			app.logger.info("image not found")
 
-		return render_template('index.html',page="home",percent = percent, sim = sim)
+		return render_template('index.html',page="home",percent = percent, sim = sim,image1 = image1, image2 = image2)
 
 if __name__ == '__main__':
     app.run(debug=True)

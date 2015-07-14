@@ -13,7 +13,16 @@
     <link href="{{ url_for('static', filename='css/material-fullpalette.min.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/roboto.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+     <script>
+      function a1() {
+         document.getElementById('im_field1').src = document.getElementById('mycanvas1').value;
+      }
 
+      function a2() {
+        document.getElementById('im_field2').src = document.getElementById('mycanvas2').value;
+      }
+
+    </script>
   </head>
   <body class="body-material-light-grey">
 
@@ -32,7 +41,7 @@
           </div> 
           <div class="row">
             <div class="col-sm-6 col-md-4" id="append1">
-              <img src="" id="im_field1" height="300" width="350">
+              <img src={{image1}} id="im_field1" height="300" width="350">
             </div>
           </div>
         </div>
@@ -46,27 +55,27 @@
           </div> 
           <div class="row">
             <div class="col-sm-6 col-md-4">
-              <img src="" id="im_field2" height="300" width="350">
+              <img src={{image2}} id="im_field2" height="300" width="350">
             </div>
           </div>
         </div>
         <center>
         <div class="col-md-4">
-          <button type="submit" onclick='' class="btn btn-primary btn-flat">COMPARE</button><br/><br/>
+          <button type="submit" class="btn btn-primary btn-flat">COMPARE</button><br/><br/>
             <div class="container">
               <center>
-                {% if sim == "Excatly Same": %}
+                {% if sim == "Excatly Similar": %}
                   <div class="label label-lg label-success">{{sim}}</div><br/><br/>
                 {% elif sim == "Almost Similar": %}
                   <div class="label label-lg label-material-light-green">{{sim}}</div><br/><br/>
-                {% elif sim == "Not much similarity": %}
+                {% elif sim == "Not much similar": %}
                   <div class="label label-lg label-material-orange">{{sim}}</div><br/><br/>
                 {% else: %}
                   <div class="label label-lg label-material-red">{{sim}}</div><br/><br/>
                 {% endif %}
-                <div class="panel panel-success">
+                <div class="panel panel-success" id="diff-results" >
                   <div class="panel panel-heading">Percent Of Similarity</div>
-                  <div class="panel panel-body">{{percent}}</div>
+                  <div class="panel panel-body">{{percent}}<span id="mismatch"></span></div>
                 </div>
               </center>
            </div>
@@ -86,17 +95,6 @@
     <script src="{{ url_for('static', filename='js/material.min.js.js')}}"></script>
     <script src="{{ url_for('static', filename='js/jquery.js')}}"></script>    
     <script src="{{ url_for('static', filename='js/ripples.js')}}"></script>
-    <script src="{{ url_for('static', filename='js/resemble.js')}}"></script>    
-    <script type="text/javascript">
-      function a1() {
-         document.getElementById('im_field1').src = document.getElementById('mycanvas1').value;
-      }
-
-      function a2() {
-        document.getElementById('im_field2').src = document.getElementById('mycanvas2').value;
-      }
-
-    </script>
 
     
   </body>

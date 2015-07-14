@@ -26,12 +26,7 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <div class="form-group">
-               <div class="input-group">
-                  <input type="text" class="form-control" id="mycanvas1" name="image1" placeholder="Link of first Image" {{('value="%s"' %oldform['image1'])|safe if retry}} required>
-                  <span class="input-group-btn">
-                    <button type="button" class="glyphicon glyphicon-download" id="url_btn1"></button>
-                  </span>
-                </div>
+                  <input type="text" class="form-control" id="mycanvas1" name="image1" onchange='a1()' placeholder="Link of first Image" {{('value="%s"' %oldform['image1'])|safe if retry}} required>
               </div>   
             </div>
           </div> 
@@ -45,12 +40,7 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <div class="form-group">
-                <div class="input-group">
-                  <input type="text" class="form-control" id="mycanvas2" name="image2" placeholder="Link of second Image" {{('value="%s"' %oldform['image2'])|safe if retry}} required>
-                  <span class="input-group-btn">
-                    <button type="button" class="glyphicon glyphicon-download"></button>
-                  </span>
-                </div>
+                  <input type="text" class="form-control" id="mycanvas2" name="image2" onchange='a2()' placeholder="Link of second Image" {{('value="%s"' %oldform['image2'])|safe if retry}} required>
               </div>   
             </div> 
           </div> 
@@ -62,7 +52,7 @@
         </div>
         <center>
         <div class="col-md-4">
-          <button type="submit" class="btn btn-primary btn-flat">COMPARE</button><br/><br/>
+          <button type="submit" onclick='' class="btn btn-primary btn-flat">COMPARE</button><br/><br/>
             <div class="container">
               <center>
                 {% if sim == "Excatly Same": %}
@@ -96,7 +86,17 @@
     <script src="{{ url_for('static', filename='js/material.min.js.js')}}"></script>
     <script src="{{ url_for('static', filename='js/jquery.js')}}"></script>    
     <script src="{{ url_for('static', filename='js/ripples.js')}}"></script>
-    <script src="js/styles.js"></script>
+    <script src="{{ url_for('static', filename='js/resemble.js')}}"></script>    
+    <script type="text/javascript">
+      function a1() {
+         document.getElementById('im_field1').src = document.getElementById('mycanvas1').value;
+      }
+
+      function a2() {
+        document.getElementById('im_field2').src = document.getElementById('mycanvas2').value;
+      }
+
+    </script>
 
     
   </body>

@@ -17,7 +17,6 @@ def index():
 		if 'image2' in request.form:
 			image2 = request.form['image2']
 			app.logger.info(repr(image2))
-		# return render_template('index.html',page="home",url1 = image1, url2 = image2)
 
 		# image urls stored in image1 & image2	
 		try:
@@ -44,14 +43,13 @@ def index():
 			loc = np.where( res >= threshold)
 			for pt in zip(*loc[::-1]):
 				cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
-			# print loc
 			percent = max_val*100
 
 			if percent >= 98:
 				sim = "Excatly Same"
 			elif percent >=50:
 				sim = "Almost Similar"
-			elif percent >= 30:
+			elif percent >= 10:
 				sim = "Not much similarity"
 			else:
 				sim = "Completely Different Images"
